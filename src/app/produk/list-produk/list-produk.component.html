@@ -3,6 +3,8 @@
         <h3 class="text-center py-2">
           {{judul}}
         </h3>
+        <button class="btn btn-success btn-sm m-3 w-25"
+      [routerLink]="['/','produk','tambah']">Tambah</button>
         <table class="table">
             <thead>
                 <tr>
@@ -13,28 +15,25 @@
                     <th>Nama Produsen</th>
                     <th>Kode Produsen</th>
                     <th>Alamat Produsen</th>
+                    <th class="text-center">Aksi</th>
                 </tr>
             </thead>
             <tbody>
-                <tr>
-                    <td>1</td>
-                    <td>Panadol</td>
-                    <td>Obat-Obatan</td>
-                    <td>25Gr</td>
-                    <td>Kimia Farma</td>
-                    <td>KM001</td>
-                    <td>Bandung</td>
-                </tr>
-                <tr>
-                    <td>2</td>
-                    <td>Panadol Extra</td>
-                    <td>Obat-Obatan</td>
-                    <td>25Kg</td>
-                    <td>Kimia Farma</td>
-                    <td>KM001</td>
-                    <td>Bandung</td>
+                <tr *ngFor="let item of listProduk; let i = index">
+                      <td>{{i + 1}}</td>
+                      <td>{{item.produkNama}}</td>
+                      <td>{{item.produkJenis}}</td>
+                      <td>{{item.produkBerat}}</td>
+                      <td>{{item.produsenNama}}</td>
+                      <td>{{item.produsenKode}}</td>
+                      <td>{{item.produsenAlamat}}</td>
+                      <td>
+                        <button class="btn btn-success btn-sm mr-2" [routerLink]="['/','produk','sunting',item.produkId]">Sunting</button>
+                        <button class="btn btn-danger btn-sm" (click)="deleteProduk(item.produkId)">Hapus</button>
+                      </td>
                 </tr>
             </tbody>
         </table>
+        <!-- <table datatable [dtOptions]="dtOptions" class="row-border hover"></table> -->
     </div>
 </div>
